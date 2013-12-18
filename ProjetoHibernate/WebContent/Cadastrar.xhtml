@@ -1,0 +1,42 @@
+<ui:composition template="/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="conteudo">
+		<h:form id="form" >
+			<fieldset id="field">
+					<legend>Cadastro de Alunos</legend>
+					<h:panelGrid columns="1" >
+					<p:messages autoUpdate="true"/>
+						<h:outputLabel value="Nome:" for="texto_nome" />
+						<p:inputText maxlength="45" label="Campo Nome" value="#{cadastro.alunos.nome}" id="texto_nome" required="true"
+						requiredMessage="Preenchimento do Nome é obrigatório!"  />
+						
+						
+						<h:outputLabel value="Data de Nascimento:" for="dataNasc" />
+						<p:inputMask maxlength="10" mask="99/99/9999" label="Campo Nome" value="#{cadastro.alunos.dataNascimento}" id="dataNasc" required="true"
+						requiredMessage="Preenchimento da Data de Nascimento é obrigatório!"  >
+							<f:convertDateTime pattern="dd/MM/yyyy" for="dataNasc" />
+						</p:inputMask>
+	
+						<p:captcha label="Captcha" theme="blackglass" />  
+						
+						<p:commandButton value="Cadastrar" action="#{cadastro.cadastrar}" />
+									
+						
+							
+						
+						
+						
+						
+						<p:commandButton type="reset" value="Limpar"/>
+						
+						
+						
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

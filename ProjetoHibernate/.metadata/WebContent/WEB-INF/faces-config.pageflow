@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13869688756130" configfile="/ProjetoHibernate/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Cadastrar.xhtml" id="pf13873174129930" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13873174129931" path="Cadastrar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Inicio.xhtml" id="pf13873174129932" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13873174129931" path="Inicio.xhtml"/>
+  <links id="pf13873174129931" target="pf13873174129932" source="pf13873174129930" outcome="success" redirect="true" fromaction="#{cadastro.cadastrar}"/>
+</pageflow:Pageflow>
