@@ -13,7 +13,7 @@
 		<div class="barra-de-pesquisa" >
 			<h:panelGrid class="tabela">
 				<!-- Barra de Pesquisa -->
-				<h:outputLabel for="busca_texto" title="Pesquise por Nome/Código/Data de Nascimento"  value="Pesquisar:"/> 
+				<h:outputLabel for="busca_texto" title="Pesquise por Nome/Código"  value="Pesquisar:"/> 
 				
 				<p:inputText  id="busca_texto" styleClass="busca_texto" value="#{relatorioMB.filtro}">
 					<f:ajax event="keyup" listener="#{relatorioMB.buscarFiltro}" render="tabela"/>
@@ -21,46 +21,52 @@
 			</h:panelGrid>
 		</div>
 		<!-- Criação da Tabela -->
-			<h:dataTable class="tabela" id="tabela" value="#{not empty relatorioMB.filtro ? relatorioMB.alunoFiltrado : relatorioMB.todosAlunos}" var="item"
-			rendered="#{not empty relatorioMB.todosAlunos}">
+			<p:dataTable paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			currentPageReportTemplate="Exibindo de {startRecord} a {endRecord}"    
+                 rowsPerPageTemplate="5,10,15" paginator="true" rows="10" id="tabela" value="#{not empty relatorioMB.filtro ? relatorioMB.alunoFiltrado : relatorioMB.todosAlunos}" var="item"
+			rendered="#{not empty relatorioMB.todosAlunos}" emptyMessage="Sua pesquisa por ' #{relatorioMB.filtro} ' , não encontrou nenhum resultado. Verifique se as palavras estão escritas corretamente ou reescreva sua busca usando termos mais genéricos.">
 		
-			<h:column headerClass="check-column">
+			 <f:facet name="header">  
+            	Relatório
+        	</f:facet>  
+		
+			<p:column headerClass="check-column">
 			<f:facet name="header">Código</f:facet>
 				<h:outputText value="#{item.iAlunos}"/>
-			</h:column>
-			<h:column headerClass="check-column">
+			</p:column>
+			<p:column headerClass="check-column">
 			<f:facet name="header">Nome</f:facet>
 				<h:outputText value="#{item.nome}"/>
-			</h:column>
+			</p:column>
 
 
-			<h:column headerClass="check-column">
+			<p:column headerClass="check-column">
 			<f:facet name="header">Data de Nascimento</f:facet>
 				<h:outputText value="#{item.dataNascimento}"/>
-			</h:column>
+			</p:column>
 
 			<!-- Opção editar -->
 			
-			<h:column headerClass="check-column">
+			<p:column headerClass="check-column">
 				<h:commandButton image="/imagens/updateIcon.jpg" title="Editar este usuário" 
 					action="#{redirecionarPaginaBean.redirecionar}" value="Alterar" >
 				<f:setPropertyActionListener target="#{redirecionarPaginaBean.local}" value="Alterar" />
 				<f:ajax listener="#{relatorioMB.alterarCadastro(item)}" />
 			</h:commandButton>
 			
-			</h:column>
+			</p:column>
 			
 			 
 			
-			<h:column headerClass="check-column">
+			<p:column headerClass="check-column">
 				<h:commandLink  title="Deletar Usuário">
 					<h:graphicImage value="/imagens/deleteIcon.png"/>
 					<f:ajax  listener="#{relatorioMB.excluir(item)}" render="@form" />
 				</h:commandLink> 
 				
-			</h:column>
+			</p:column>
 			
-			</h:dataTable>
+			</p:dataTable>
 
 			
 
