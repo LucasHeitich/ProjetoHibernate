@@ -1,4 +1,4 @@
-package com.vh.model.CRUD;
+package com.project.model.CRUD;
 
 import java.util.List;
 

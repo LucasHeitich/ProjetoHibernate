@@ -1,12 +1,13 @@
-package com.vh.controller.beans;
+package com.project.controller.beans;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import com.vh.controller.util.Repositorios;
-import com.vh.model.dao.AlunosDao;
-import com.vh.model.vo.Alunos;
+
+import com.project.controller.util.Repositorios;
+import com.project.model.DAO.AlunosDao;
+import com.project.model.vo.Alunos;
 
 @ManagedBean(name="cadastro")
 public class CadastroAlunosMB {

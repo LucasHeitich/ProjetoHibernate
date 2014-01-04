@@ -1,4 +1,4 @@
-package com.vh.controller.util;
+package com.project.controller.util;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;

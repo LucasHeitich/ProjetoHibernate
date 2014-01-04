@@ -1,12 +1,12 @@
-package com.vh.model.dao;
+package com.project.model.DAO;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-import com.vh.model.CRUD.CRUD;
-import com.vh.model.vo.Alunos;
+import com.project.model.CRUD.CRUD;
+import com.project.model.vo.Alunos;
 
 public class AlunosDao implements CRUD<Alunos> {
 	private Session session;

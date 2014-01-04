@@ -1,4 +1,4 @@
-package com.vh.model.vo;
+package com.project.model.vo;
 
 import java.util.Date;
 import java.util.logging.SimpleFormatter;

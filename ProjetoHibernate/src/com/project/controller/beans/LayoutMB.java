@@ -1,4 +1,4 @@
-package com.vh.controller.beans;
+package com.project.controller.beans;
 
 import java.util.Calendar;
 

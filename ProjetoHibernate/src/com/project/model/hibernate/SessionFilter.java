@@ -1,4 +1,4 @@
-package com.vh.model.hibernate;
+package com.project.model.hibernate;
 
 import java.io.IOException;
 

@@ -1,5 +1,5 @@
 
-package com.vh.controller.beans;
+package com.project.controller.beans;
 
 import javax.faces.bean.ManagedBean;
 

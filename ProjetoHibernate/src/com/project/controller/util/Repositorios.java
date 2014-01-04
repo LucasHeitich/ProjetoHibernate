@@ -1,7 +1,8 @@
-package com.vh.controller.util;
+package com.project.controller.util;
 
 import org.hibernate.Session;
-import com.vh.model.dao.AlunosDao;
+
+import com.project.model.DAO.AlunosDao;
 
 
 
