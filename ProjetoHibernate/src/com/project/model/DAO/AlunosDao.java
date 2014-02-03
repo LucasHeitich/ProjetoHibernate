@@ -1,8 +1,6 @@
 package com.project.model.DAO;
 
 import java.util.List;
-
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import com.project.model.CRUD.CRUD;
@@ -15,9 +13,8 @@ public class AlunosDao implements CRUD<Alunos> {
 		this.session = session;
 	}
 	
-	@Override
-	public List<Alunos> listarTodos() {
-		
+    @Override
+	public List<Alunos> listarTodos() {	
 		return session.createCriteria(Alunos.class).list();
 	}
 	

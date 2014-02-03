@@ -1,7 +1,6 @@
-package com.project.controller.beans;
+package com.project.controller.beans.cons;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,14 +8,17 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
+import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
 import com.project.controller.util.Repositorios;
 import com.project.model.DAO.AlunosDao;
 import com.project.model.vo.Alunos;
 
-@ManagedBean(name="relatorioMB")
+@ManagedBean(name="consultaMB")
 @SessionScoped
-public class RelatorioMB {
+public class ConsultaMB {
 	
 	private List<Alunos> listaAlunos = new ArrayList<Alunos>();
 	private ArrayList<Alunos> selecionados;
@@ -58,7 +60,8 @@ public class RelatorioMB {
 		this.alunoAlterado = item;
 	}
 	public void alterar(){
-	
+		 HttpServletRequest request =  (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		
 		this.alunosDao = repo.getAlunos();
 		alunosDao.alterar(alunoAlterado);
 		FacesContext.getCurrentInstance().addMessage(null,
@@ -67,6 +70,7 @@ public class RelatorioMB {
 	}
 	
 	public void excluir(Alunos aluno){ 
+		
 		this.repo = new Repositorios();
 		this.alunosDao = repo.getAlunos();	
 		this.alunosDao.deletar(aluno);

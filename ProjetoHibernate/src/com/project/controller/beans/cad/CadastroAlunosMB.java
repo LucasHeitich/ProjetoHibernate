@@ -1,4 +1,4 @@
-package com.project.controller.beans;
+package com.project.controller.beans.cad;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -29,7 +29,7 @@ public class CadastroAlunosMB {
 	}
 	public void cadastrar(){
 		alunosDao = repo.getAlunos();
-		System.out.println(alunosDao.listarTodos().get(0));
+		
 		
 		try {		
 			alunos.setSituacaoAluno(true);

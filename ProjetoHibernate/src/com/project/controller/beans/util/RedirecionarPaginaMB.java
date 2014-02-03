@@ -1,5 +1,6 @@
 
-package com.project.controller.beans;
+package com.project.controller.beans.util;
+
 
 import javax.faces.bean.ManagedBean;
 
@@ -7,9 +8,10 @@ import javax.faces.bean.ManagedBean;
 public class RedirecionarPaginaMB {
 	
 	private String local;
-	
+
 	public String redirecionar(){
 		return local+"?faces-redirect=true";
+		
 	}
 
 	public String getLocal() {

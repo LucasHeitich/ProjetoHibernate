@@ -9,9 +9,6 @@ version="3.0">
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
-
-
-
    <!-- keys gotten from recaptcha -->
     <context-param>
         <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
@@ -42,11 +39,19 @@ version="3.0">
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
-  
-
-  
-  
   <welcome-file-list>
     <welcome-file>Inicio.xhtml</welcome-file>
   </welcome-file-list>
+  
+  <!-- Spring Security Code -->
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+           /WEB-INF/applicationContext-security.xml
+    </param-value>
+   </context-param>
+
+  
+  
 </web-app>
