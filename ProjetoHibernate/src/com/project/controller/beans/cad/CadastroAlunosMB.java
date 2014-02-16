@@ -24,6 +24,9 @@ public class CadastroAlunosMB {
 		alunos = new Alunos();
 	}
 
+	public void teste(){
+		System.out.println("arroz");
+	}
 	public String goToBegin(){
 		return "Inicio?faces-redirect=true";
 	}

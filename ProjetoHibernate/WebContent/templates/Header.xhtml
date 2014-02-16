@@ -37,6 +37,10 @@
 					value="Consultar"/>
 			</h:commandLink>
 			
+			<h:commandLink value="Agenda" styleClass="bannerLink" action="#{redirecionarPaginaBean.redirecionar}">
+				<f:setPropertyActionListener target="#{redirecionarPaginaBean.local}" value="Agenda"/>
+			
+			</h:commandLink>
 
 		</h:form>
 	</div>

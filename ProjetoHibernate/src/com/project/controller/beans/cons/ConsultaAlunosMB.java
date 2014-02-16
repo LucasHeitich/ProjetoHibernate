@@ -9,18 +9,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
-
 import com.project.controller.util.Repositorios;
 import com.project.model.DAO.AlunosDao;
 import com.project.model.vo.Alunos;
 
 @ManagedBean(name="consultaMB")
 @SessionScoped
-public class ConsultaMB {
+public class ConsultaAlunosMB {
 	
-	private List<Alunos> listaAlunos = new ArrayList<Alunos>();
+
 	private ArrayList<Alunos> selecionados;
 	private List<Alunos> alunoFiltrado;
 	private List<Alunos> todosAlunos;
@@ -28,20 +25,25 @@ public class ConsultaMB {
 	private AlunosDao alunosDao;
 	private Repositorios repo;
 	private String filtro;
-	private boolean sorted;
-	private boolean asc;
-	private boolean itemSelecionado;
 	
-	@PostConstruct 
+	private HttpServletRequest req;
+	private static final String TODOS_ALUNOS_SESSION = "todosAlunosSession";
+	
+	@SuppressWarnings("unchecked")
+    @PostConstruct 
 	public void initMB(){	
-		repo = new Repositorios();
-		alunosDao = repo.getAlunos();
-		todosAlunos = alunosDao.listarTodos();
-	
+		req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		if (todosAlunos == null && req.getSession().getAttribute(TODOS_ALUNOS_SESSION) == null){
+			
+			repo = new Repositorios();
+			alunosDao = repo.getAlunos();
+			todosAlunos = alunosDao.listarTodos();
+			req.getSession().setAttribute(TODOS_ALUNOS_SESSION, todosAlunos);
+			
+		}else{
+			todosAlunos =  req.getSession().getAttribute(TODOS_ALUNOS_SESSION) == null ? todosAlunos : (List<Alunos>)req.getSession().getAttribute(TODOS_ALUNOS_SESSION) ;
+		}
 	}
-
-
-	
 	
 	public void buscarFiltro(){
 		this.alunoFiltrado = new ArrayList<Alunos>();
@@ -58,9 +60,10 @@ public class ConsultaMB {
 	
 	public void alterarCadastro(Alunos item) {
 		this.alunoAlterado = item;
+
 	}
 	public void alterar(){
-		 HttpServletRequest request =  (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		
 		
 		this.alunosDao = repo.getAlunos();
 		alunosDao.alterar(alunoAlterado);
@@ -74,58 +77,11 @@ public class ConsultaMB {
 		this.repo = new Repositorios();
 		this.alunosDao = repo.getAlunos();	
 		this.alunosDao.deletar(aluno);
+		this.todosAlunos.remove(aluno);
 	
 	}
 
-
-
-	public boolean isSorted() {
-	    return sorted;
-    }
-
-
-
-	public void setSorted(boolean sorted) {
-	    this.sorted = sorted;
-    }
-
-
-
-	public boolean isAsc() {
-	    return asc;
-    }
-
-
-
-	public void setAsc(boolean asc) {
-	    this.asc = asc;
-    }
-
-
-
-	public boolean isItemSelecionado() {
-	    return itemSelecionado;
-    }
-
-
-
-	public void setItemSelecionado(boolean itemSelecionado) {
-	    this.itemSelecionado = itemSelecionado;
-    }
-
-
-
-	public List<Alunos> getListaAlunos() {
-		return listaAlunos;
-	}
-
-
-
-	public void setListaAlunos(List<Alunos> listaAlunos) {
-		this.listaAlunos = listaAlunos;
-	}
-
-
+	
 
 	public ArrayList<Alunos> getSelecionados() {
 		return selecionados;
@@ -152,9 +108,6 @@ public class ConsultaMB {
 
 
 	public List<Alunos> getTodosAlunos() {
-		repo = new Repositorios();
-		alunosDao = repo.getAlunos();
-		todosAlunos = alunosDao.listarTodos();
 		return todosAlunos;
 	}
 
@@ -164,45 +117,23 @@ public class ConsultaMB {
 		this.todosAlunos = todosAlunos;
 	}
 
-
-
-
-
-
-
-	public AlunosDao getAlunosDao() {
-		return alunosDao;
-	}
-
-
-
-	public void setAlunosDao(AlunosDao alunosDao) {
-		this.alunosDao = alunosDao;
-	}
-
-
-
 	public String getFiltro() {
 		return filtro;
 	}
-
-
 
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
 
-
-
 	public Alunos getAlunoAlterado() {
 	    return alunoAlterado;
     }
 
-
-
 	public void setAlunoAlterado(Alunos alunoAlterado) {
 	    this.alunoAlterado = alunoAlterado;
     }
+
+	
 	
 	
 }

@@ -21,16 +21,16 @@
 			</h:panelGrid>
 		</div>
 		<!-- Criação da Tabela -->
-			<p:dataTable paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			<p:dataTable  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			currentPageReportTemplate="Exibindo de {startRecord} a {endRecord}"    
-                 rowsPerPageTemplate="5,10,15" paginator="true" rows="10" id="tabela" value="#{not empty consultaMB.filtro ? consultaMB.alunoFiltrado : consultaMB.todosAlunos}" var="item"
+                 rowsPerPageTemplate="10,20,50" paginator="true" rows="10" id="tabela" value="#{not empty consultaMB.filtro ? consultaMB.alunoFiltrado : consultaMB.todosAlunos}" var="item"
 			rendered="#{not empty consultaMB.todosAlunos}" emptyMessage="Sua pesquisa por ' #{consultaMB.filtro} ' , não encontrou nenhum resultado. Verifique se as palavras estão escritas corretamente ou reescreva sua busca usando termos mais genéricos.">
 		
 			 <f:facet name="header">  
             	Relatório
         	 </f:facet>  
 		
-			<p:column sortBy="#{item.iAlunos}" headerText="Código" headerClass="check-column">
+			<p:column  sortBy="#{item.iAlunos}" headerText="Código" headerClass="check-column">
 				<h:outputText value="#{item.iAlunos}"/>
 			</p:column>
 			
@@ -46,28 +46,32 @@
 			
 			<p:column headerClass="check-column">
 				<h:commandButton image="/imagens/updateIcon.jpg" title="Editar essa linha" 
-					action="#{redirecionarPaginaBean.redirecionar}" value="Alterar" >
-				<f:setPropertyActionListener target="#{redirecionarPaginaBean.local}" value="Alterar" />
-				<f:ajax listener="#{consultaMB.alterarCadastro(item)}" />
-			</h:commandButton>
+						action="#{redirecionarPaginaBean.redirecionar}" value="Alterar" >
+					<f:setPropertyActionListener target="#{redirecionarPaginaBean.local}" value="Alterar" />
+					<f:ajax listener="#{consultaMB.alterarCadastro(item)}" />
+				</h:commandButton>
 			
 			</p:column>
 			
-			 <p:confirmDialog message="SoWhat?" visible="true" />
+			
 			<!-- Opção deletar -->
 			<p:column headerClass="check-column">
 		
-				<p:commandLink    >
-					<p:graphicImage value="/imagens/deleteIcon.png" title="Deletar essa linha"/>
-					<f:ajax listener="#{consultaMB.excluir(item)}" render="@form"  />
+				<p:commandLink  update="tabela" actionListener="#{consultaMB.excluir(item)}" >
+					<p:graphicImage  value="/imagens/deleteIcon.png" title="Deletar essa linha"/>
+					<p:confirm header="Confirmação" message="Você tem certeza?" icon="ui-icon-alert" />  
+					
 				</p:commandLink> 
 				
 			</p:column>
+			 	
 			
 			</p:dataTable>
-
 			
-
+		    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
+		        <p:commandButton  value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+		        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+		    </p:confirmDialog>  
 		</h:form>
 	</div>
 	</ui:define>

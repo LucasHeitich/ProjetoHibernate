@@ -1,0 +1,50 @@
+<ui:composition template="/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+	<ui:define name="conteudo">
+			<div class="container">
+			</div>
+			<h:form  id="form">
+				<fieldset id="field">
+					<legend>Agendar Reunião</legend>
+					<h:panelGrid columns="1" >
+						<h:outputLabel value="Data e hora:" for="data"  />
+						
+						<p:calendar id="data" locale="pt"  pattern="MM/dd/yyyy HH:mm" />
+						
+						<h:outputLabel value="Email de quem participará da reunião:" for="reuniao_text"/>
+						
+						<p:autoComplete value="#{autoCompleteMB.selecionado}" completeMethod="#{autoCompleteMB.complete}"  
+					        var="item" itemLabel="#{item.nome}" itemValue="#{item.nome}"  multiple="true">  
+					  
+<!-- 					        <p:ajax event="itemUnselect" listener="#{autoCompleteBean.handleUnselect}" update="growl" />   -->
+					  
+					       
+					  
+					        <p:column style="width:80%">  
+					            #{item.iAlunos} - #{item.nome}  
+					        </p:column>  
+					    </p:autoComplete>  
+
+						
+<!-- 						<p:commandLink> -->
+<!-- 							<p:graphicImage style="right:1167px;position:absolute;top:235px;"   value="/imagens/add.jpg" title="Adicionar pessoas para essa reunião" /> -->
+<!-- 						</p:commandLink> -->
+					<p:commandButton value="Agendar Reunião" />
+					</h:panelGrid>
+				</fieldset>
+			</h:form>
+		
+		
+	
+	
+	
+	
+	</ui:define>
+
+</ui:composition>
